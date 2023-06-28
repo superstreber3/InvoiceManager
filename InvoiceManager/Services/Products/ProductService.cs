@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using InvoiceManager.DataAccess;
 using InvoiceManager.DataAccess.Entities;
 
@@ -22,6 +24,11 @@ public class ProductService : IProductService
     public async Task<Product> ReadProductAsync(int id)
     {
         return await _context.Products.FindAsync(id);
+    }
+
+    public List<Product> ReadProducts()
+    {
+        return _context.Products.ToList();
     }
 
     public async Task UpdateProductAsync(Product product)

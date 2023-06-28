@@ -6,20 +6,29 @@
         xmlns:local="clr-namespace:InvoiceManager"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <ListView Margin="10" Name="InvoiceBinding" PreviewMouseLeftButtonUp="invoiceView_Click">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <WrapPanel>
-                        <TextBlock Text="Name: " />
-                        <TextBlock Text="{Binding Id}" FontWeight="Bold" />
-                        <TextBlock Text=", " />
-                        <TextBlock Text="Age: " />
-                        <TextBlock Text="{Binding Date}" FontWeight="Bold" />
-                        <TextBlock Text=")" />
-                    </WrapPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+    <StackPanel>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Invoice">
+                    <MenuItem Header="New" Click="CreateInvoice"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Grid>
+            <ListView Margin="10" Name="InvoiceBinding" PreviewMouseLeftButtonUp="invoiceView_Click">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="Name: " />
+                            <TextBlock Text="{Binding Id}" FontWeight="Bold" />
+                            <TextBlock Text=", " />
+                            <TextBlock Text="Age: " />
+                            <TextBlock Text="{Binding Date}" FontWeight="Bold" />
+                            <TextBlock Text=")" />
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </StackPanel>
 </Window>

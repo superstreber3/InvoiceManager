@@ -4,6 +4,7 @@ using System.Windows.Input;
 using InvoiceManager.DataAccess;
 using InvoiceManager.DataAccess.Entities;
 using InvoiceManager.Services.Invoices;
+using InvoiceManager.Services.Products;
 
 namespace InvoiceManager.ViewModels;
 
@@ -13,11 +14,13 @@ namespace InvoiceManager.ViewModels;
 public partial class MainWindow : Window
 {
     private readonly IInvoiceService _invoiceService;
+    private readonly IProductService _productService;
 
-    public MainWindow(IInvoiceService invoiceService, InvoiceManagerDbContext context)
+    public MainWindow(IInvoiceService invoiceService, IProductService productService, InvoiceManagerDbContext context)
     {
         DbInitializer.Initialize(context);
         _invoiceService = invoiceService;
+        _productService = productService;
         InitializeComponent();
         GetInvoices();
     }
@@ -36,5 +39,11 @@ public partial class MainWindow : Window
             var invoiceViewWindow = new InvoiceViewWindow((Invoice)item);
             invoiceViewWindow.Show();
         }
+    }
+
+    private void CreateInvoice(object sender, RoutedEventArgs e)
+    {
+        var invoiceWindow = new InvoiceWindow(_productService);
+        invoiceWindow.Show();
     }
 }
