@@ -15,7 +15,13 @@
             </Menu>
         </DockPanel>
         <Grid>
-            <ListView Margin="10" Name="InvoiceBinding" PreviewMouseLeftButtonUp="invoiceView_Click">
+            <ListView Margin="10" Name="InvoiceBinding" MouseDoubleClick="invoiceView_Click">
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Remove"
+                                  Click="RemoveInvoice"/>
+                    </ContextMenu>
+                </ListView.ContextMenu>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>

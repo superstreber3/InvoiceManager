@@ -34,16 +34,29 @@ public partial class MainWindow : Window
     private void invoiceView_Click(object sender, MouseButtonEventArgs e)
     {
         var item = (sender as ListView)?.SelectedItem;
-        if (item is not null)
+        if (item is null)
         {
-            var invoiceViewWindow = new InvoiceViewWindow((Invoice)item);
-            invoiceViewWindow.Show();
+            return;
         }
+
+        var invoiceViewWindow = new InvoiceViewWindow((Invoice)item);
+        invoiceViewWindow.Show();
     }
 
     private void CreateInvoice(object sender, RoutedEventArgs e)
     {
-        var invoiceWindow = new InvoiceWindow(_productService);
+        var invoiceWindow = new InvoiceWindow(_productService, _invoiceService);
         invoiceWindow.Show();
+        invoiceWindow.Closed += (o, args) => { GetInvoices(); };
+    }
+
+    private void RemoveInvoice(object sender, RoutedEventArgs e)
+    {
+        foreach (var selectedItem in InvoiceBinding.SelectedItems)
+        {
+            _invoiceService.DeleteInvoice(((Invoice)selectedItem).Id);
+        }
+
+        GetInvoices();
     }
 }

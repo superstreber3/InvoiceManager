@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using InvoiceManager.DataAccess;
 using InvoiceManager.DataAccess.Entities;
 
@@ -15,20 +15,9 @@ public class InvoiceService : IInvoiceService
         _context = context;
     }
 
-    public async Task InitDatabase()
+    public Invoice ReadInvoice(int id)
     {
-        await _context.Database.EnsureCreatedAsync();
-    }
-
-    public async Task CreateInvoiceAsync(Invoice invoice)
-    {
-        _context.Invoices.Add(invoice);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task<Invoice> ReadInvoiceAsync(int id)
-    {
-        return await _context.Invoices.FindAsync(id);
+        return _context.Invoices.Find(id) ?? throw new InvalidOperationException();
     }
 
     public List<Invoice> ReadInvoices()
@@ -36,19 +25,26 @@ public class InvoiceService : IInvoiceService
         return _context.Invoices.ToList();
     }
 
-    public async Task UpdateInvoiceAsync(Invoice invoice)
+    public void CreateInvoice(Invoice invoice)
     {
-        _context.Invoices.Update(invoice);
-        await _context.SaveChangesAsync();
+        _context.Invoices.Add(invoice);
+        _context.SaveChanges();
     }
 
-    public async Task DeleteInvoiceAsync(int id)
+    public void UpdateInvoice(Invoice invoice)
     {
-        var invoice = await _context.Invoices.FindAsync(id);
-        if (invoice != null)
+        _context.Invoices.Update(invoice);
+        _context.SaveChanges();
+    }
+
+    public void DeleteInvoice(int id)
+    {
+        var invoice = _context.Invoices.Find(id);
+        if (invoice is not null)
         {
             _context.Invoices.Remove(invoice);
-            await _context.SaveChangesAsync();
         }
+
+        _context.SaveChanges();
     }
 }

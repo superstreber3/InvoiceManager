@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using InvoiceManager.DataAccess;
 using InvoiceManager.DataAccess.Entities;
 
@@ -15,15 +15,10 @@ public class ProductService : IProductService
         _context = context;
     }
 
-    public async Task CreateProductAsync(Product product)
+    public void CreateProduct(Product product)
     {
         _context.Products.Add(product);
-        await _context.SaveChangesAsync();
-    }
-
-    public async Task<Product> ReadProductAsync(int id)
-    {
-        return await _context.Products.FindAsync(id);
+        _context.SaveChanges();
     }
 
     public List<Product> ReadProducts()
@@ -31,19 +26,26 @@ public class ProductService : IProductService
         return _context.Products.ToList();
     }
 
-    public async Task UpdateProductAsync(Product product)
+    public void UpdateProduct(Product product)
     {
         _context.Products.Update(product);
-        await _context.SaveChangesAsync();
+        _context.SaveChanges();
     }
 
-    public async Task DeleteProductAsync(int id)
+    public void DeleteProduct(int id)
     {
-        var product = await _context.Products.FindAsync(id);
-        if (product != null)
+        var product = _context.Products.Find(id);
+        if (product is null)
         {
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
+            return;
         }
+
+        _context.Products.Remove(product);
+        _context.SaveChanges();
+    }
+
+    public Product ReadProduct(int id)
+    {
+        return _context.Products.Find(id) ?? throw new InvalidOperationException();
     }
 }

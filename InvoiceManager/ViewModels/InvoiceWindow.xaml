@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="InvoiceWindow" Height="450" Width="800">
     <Grid>
-        <Label Content="Products" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top"/>
+        <Label Content="Products (Select Products and click 'Create Invoice')" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top"/>
         <ListView Margin="10,50,10,64" Name="ProductBinding" PreviewMouseLeftButtonUp="product_Click">
             <ListView.ItemTemplate>
                 <DataTemplate>
