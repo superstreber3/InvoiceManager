@@ -1,0 +1,32 @@
+﻿<Window x:Class="InvoiceManager.ViewModels.ProductViewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InvoiceManager.ViewModels"
+        mc:Ignorable="d"
+        Title="ProductViewWindow" Height="450" Width="800">
+    <Grid>
+        <ListView Margin="10,10,10,64" Name="ProductViewBinding" MouseDoubleClick="OpenProduct">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="Id: " />
+                        <TextBlock Text="{Binding Id}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Name: " />
+                        <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Description: " />
+                        <TextBlock Text="{Binding Description}" FontWeight="Bold" />
+                        <TextBlock Text=", " />
+                        <TextBlock Text="Price: " />
+                        <TextBlock Text="{Binding Price}" FontWeight="Bold" />
+                        <TextBlock Text=")" />
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Content="Close" Click="Button_Click" Margin="348,375,348,0" Height="30" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

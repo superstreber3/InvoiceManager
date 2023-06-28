@@ -62,7 +62,13 @@ public partial class MainWindow : Window
 
     private void CreateProduct(object sender, RoutedEventArgs e)
     {
-        var productWindow = new ProductWindow(_productService);
+        var productWindow = new ProductWindow(_productService, null);
         productWindow.Show();
+    }
+
+    private void ViewProducts(object sender, RoutedEventArgs e)
+    {
+        var productViewWindow = new ProductViewWindow(_productService);
+        productViewWindow.Show();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using InvoiceManager.DataAccess;
 using InvoiceManager.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace InvoiceManager.Services.Products;
 
@@ -23,7 +24,7 @@ public class ProductService : IProductService
 
     public List<Product> ReadProducts()
     {
-        return _context.Products.ToList();
+        return _context.Products.AsNoTracking().ToList();
     }
 
     public void UpdateProduct(Product product)

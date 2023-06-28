@@ -13,11 +13,20 @@ namespace InvoiceManager.ViewModels;
 public partial class ProductWindow : Window
 {
     private readonly IProductService _productService;
+    private readonly Product? _selectedProduct;
 
-    public ProductWindow(IProductService productService)
+    public ProductWindow(IProductService productService, Product? selectedProduct)
     {
-        _productService = productService;
         InitializeComponent();
+        _productService = productService;
+        _selectedProduct = selectedProduct;
+        if (_selectedProduct != null)
+        {
+            NameInput.Text = _selectedProduct.Name;
+            DescriptionInput.Text = _selectedProduct.Description;
+            PriceInput.Text = _selectedProduct.Price.ToString();
+            StockInput.Text = _selectedProduct.Stock.ToString();
+        }
     }
 
     private void DecimalValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -61,7 +70,13 @@ public partial class ProductWindow : Window
             Price = decimal.Parse(PriceInput.Text),
             Stock = int.Parse(StockInput.Text)
         };
-
+        if (_selectedProduct != null)
+        {
+            product.Id = _selectedProduct.Id;
+            _productService.UpdateProduct(product);
+            Close();
+            return;
+        }
         _productService.CreateProduct(product);
         Close();
     }
