@@ -12,6 +12,9 @@
                 <MenuItem Header="Invoice">
                     <MenuItem Header="New" Click="CreateInvoice"/>
                 </MenuItem>
+                <MenuItem Header="Product">
+                    <MenuItem Header="New" Click="CreateProduct"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
         <Grid>

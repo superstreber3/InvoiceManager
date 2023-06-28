@@ -59,4 +59,10 @@ public partial class MainWindow : Window
 
         GetInvoices();
     }
+
+    private void CreateProduct(object sender, RoutedEventArgs e)
+    {
+        var productWindow = new ProductWindow(_productService);
+        productWindow.Show();
+    }
 }
