@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using InvoiceManager.DataAccess;
 using InvoiceManager.DataAccess.Entities;
+using InvoiceManager.Services.Analytics;
 using InvoiceManager.Services.Invoices;
 using InvoiceManager.Services.Products;
 
@@ -15,12 +16,14 @@ public partial class MainWindow : Window
 {
     private readonly IInvoiceService _invoiceService;
     private readonly IProductService _productService;
+    private readonly IAnalyticService _analyticService;
 
-    public MainWindow(IInvoiceService invoiceService, IProductService productService, InvoiceManagerDbContext context)
+    public MainWindow(IInvoiceService invoiceService, IProductService productService, IAnalyticService analyticService, InvoiceManagerDbContext context)
     {
         DbInitializer.Initialize(context);
         _invoiceService = invoiceService;
         _productService = productService;
+        _analyticService = analyticService;
         InitializeComponent();
         GetInvoices();
     }
@@ -70,5 +73,11 @@ public partial class MainWindow : Window
     {
         var productViewWindow = new ProductViewWindow(_productService);
         productViewWindow.Show();
+    }
+
+    private void ViewAnalytics(object sender, RoutedEventArgs e)
+    {
+        var analyticWindow = new AnalyticWindow(_analyticService);
+        analyticWindow.Show();
     }
 }

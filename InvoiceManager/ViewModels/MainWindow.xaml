@@ -16,6 +16,9 @@
                     <MenuItem Header="New" Click="CreateProduct"/>
                     <MenuItem Header="View" Click="ViewProducts"/>
                 </MenuItem>
+                <MenuItem Header="Analytic">
+                    <MenuItem Header="View" Click="ViewAnalytics"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
         <Grid>
@@ -32,7 +35,7 @@
                             <TextBlock Text="Name: " />
                             <TextBlock Text="{Binding Id}" FontWeight="Bold" />
                             <TextBlock Text=", " />
-                            <TextBlock Text="Age: " />
+                            <TextBlock Text="Date: " />
                             <TextBlock Text="{Binding Date}" FontWeight="Bold" />
                             <TextBlock Text=")" />
                         </WrapPanel>

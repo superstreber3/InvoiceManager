@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using InvoiceManager.DataAccess;
+using InvoiceManager.Services.Analytics;
 using InvoiceManager.Services.Invoices;
 using InvoiceManager.Services.Products;
 using InvoiceManager.ViewModels;
@@ -41,6 +42,7 @@ public partial class App : Application
         services.AddHostedService<MigrationHostedService>();
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IInvoiceService, InvoiceService>();
+        services.AddScoped<IAnalyticService, AnalyticService>();
         services.AddSingleton<MainWindow>();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using InvoiceManager.DataAccess;
 using InvoiceManager.DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace InvoiceManager.Services.Invoices;
 
@@ -22,7 +23,7 @@ public class InvoiceService : IInvoiceService
 
     public List<Invoice> ReadInvoices()
     {
-        return _context.Invoices.ToList();
+        return _context.Invoices.AsNoTracking().ToList();
     }
 
     public void CreateInvoice(Invoice invoice)
