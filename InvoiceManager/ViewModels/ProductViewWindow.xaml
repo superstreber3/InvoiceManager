@@ -8,6 +8,12 @@
         Title="ProductViewWindow" Height="450" Width="800">
     <Grid>
         <ListView Margin="10,10,10,64" Name="ProductViewBinding" MouseDoubleClick="OpenProduct">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Remove"
+                                  Click="RemoveProduct"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>

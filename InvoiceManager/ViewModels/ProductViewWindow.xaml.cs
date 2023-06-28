@@ -51,5 +51,15 @@ namespace InvoiceManager.ViewModels
             productWindow.Show();
             productWindow.Closed += (o, args) => { GetProducts(); };
         }
+
+        private void RemoveProduct(object sender, RoutedEventArgs e)
+        {
+            foreach (var selectedItem in ProductViewBinding.SelectedItems)
+            {
+                _productService.DeleteProduct(((Product)selectedItem).Id);
+            }
+
+            GetProducts();
+        }
     }
 }
