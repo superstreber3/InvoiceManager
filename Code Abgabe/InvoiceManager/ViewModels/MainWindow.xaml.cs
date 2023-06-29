@@ -12,13 +12,14 @@ namespace InvoiceManager.ViewModels;
 /// <summary>
 ///     Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow
 {
+    private readonly IAnalyticService _analyticService;
     private readonly IInvoiceService _invoiceService;
     private readonly IProductService _productService;
-    private readonly IAnalyticService _analyticService;
 
-    public MainWindow(IInvoiceService invoiceService, IProductService productService, IAnalyticService analyticService, InvoiceManagerDbContext context)
+    public MainWindow(IInvoiceService invoiceService, IProductService productService, IAnalyticService analyticService,
+        InvoiceManagerDbContext context)
     {
         DbInitializer.Initialize(context);
         _invoiceService = invoiceService;
@@ -50,7 +51,7 @@ public partial class MainWindow : Window
     {
         var invoiceWindow = new InvoiceWindow(_productService, _invoiceService);
         invoiceWindow.Show();
-        invoiceWindow.Closed += (o, args) => { GetInvoices(); };
+        invoiceWindow.Closed += (_, _) => { GetInvoices(); };
     }
 
     private void RemoveInvoice(object sender, RoutedEventArgs e)

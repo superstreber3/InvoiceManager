@@ -1,13 +1,13 @@
-﻿<Window x:Class="InvoiceManager.ViewModels.InvoiceViewWindow"
+﻿<Window x:Class="InvoiceManager.ViewModels.InvoiceWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:InvoiceManager.ViewModels"
         mc:Ignorable="d"
-        Title="InvoiceViewWindow" Height="450" Width="800">
+        Title="InvoiceWindow" Height="450" Width="800">
     <Grid>
-        <ListView Margin="10,10,10,64" Name="InvoiceViewBinding">
+        <Label Content="Products (Select Products and click 'Create Invoice')" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top"/>
+        <ListView Margin="10,50,10,64" Name="ProductBinding" PreviewMouseLeftButtonUp="product_Click">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -27,6 +27,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Content="Close" Click="Button_Click" Margin="348,375,348,0" Height="30" VerticalAlignment="Top"/>
+        <Button Content="Create Invoice" Click="Create_Button_Click" Margin="267,375,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104"/>
+        <Button Content="Close" Click="Close_Button_Click" Margin="429,375,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="104"/>
     </Grid>
 </Window>

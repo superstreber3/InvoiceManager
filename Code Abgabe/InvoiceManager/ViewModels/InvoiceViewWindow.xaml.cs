@@ -6,7 +6,7 @@ namespace InvoiceManager.ViewModels;
 /// <summary>
 ///     Interaction logic for InvoiceViewWindow.xaml
 /// </summary>
-public partial class InvoiceViewWindow : Window
+public partial class InvoiceViewWindow
 {
     private readonly Invoice _invoice;
 

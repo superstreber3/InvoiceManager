@@ -11,13 +11,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace InvoiceManager;
 
-public partial class App : Application
+public partial class App
 {
     public App()
     {
         var builder = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", false, true);
+            .SetBasePath(Directory.GetCurrentDirectory());
 
         Configuration = builder.Build();
 
@@ -33,7 +32,7 @@ public partial class App : Application
     private void OnStartup(object sender, StartupEventArgs e)
     {
         var mainWindow = ServiceProvider.GetService<MainWindow>();
-        mainWindow.Show();
+        mainWindow!.Show();
     }
 
     private void ConfigureServices(IServiceCollection services)

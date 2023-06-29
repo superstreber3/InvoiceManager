@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using InvoiceManager.DataAccess.Entities;
@@ -11,7 +10,7 @@ namespace InvoiceManager.ViewModels;
 /// <summary>
 ///     Interaction logic for InvoiceWindow.xaml
 /// </summary>
-public partial class InvoiceWindow : Window
+public partial class InvoiceWindow
 {
     private readonly IInvoiceService _invoiceService;
     private readonly IProductService _productService;
@@ -38,10 +37,7 @@ public partial class InvoiceWindow : Window
     {
         //parse selectedItems to products
         var products = ProductBinding.SelectedItems;
-        var invoice = new Invoice
-        {
-            Products = new List<Product>()
-        };
+        var invoice = new Invoice();
         foreach (var product in products)
         {
             invoice.Products.Add((Product)product);
